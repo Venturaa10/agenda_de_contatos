@@ -26,22 +26,23 @@ def mensagem():
 def adiciona_contato(opcao):
     limpa_terminal()
     nome_contato = input('Nome do contato: ').capitalize()
-    for nome in nome_contato:
-        pass
-    lista_contatos.append(nome_contato)
-    
-    print(f'O Contato {nome_contato} foi adicionado(a) a sua agenda.\n')
-    input('ENTER para voltar ao menu: ')
+    if nome_contato in lista_contatos:
+        print(f'O contato {nome_contato} já existe na sua agenda\n')
+        input('ENTER para voltar ao menu: ')        
+    else:
+        lista_contatos.append(nome_contato)
+        print(f'O Contato {nome_contato} foi adicionado(a) a sua agenda.\n')
+        input('ENTER para voltar ao menu: ')            
 
     return executa_opcoes()
 
 def visualizar_lista():
     limpa_terminal()
     print('LISTA DE CONTATOS')
-
-    for c in lista_contatos:
-        for num in range(0,len(lista_contatos)):
-            num = num + 1
+    '''A lista está sendo exibida de maneira incorreta'''
+    for num in range(0,len(lista_contatos)):
+        num = num + 1
+        for c in lista_contatos:
             print(f'{num} - {c}')
 
 def executa_opcoes():
