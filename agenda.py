@@ -5,7 +5,7 @@ import os
 
 '''Dicionario contendo os contatos'''
 
-lista_contatos = []
+lista_contatos = ['João','Vinicius','Michelle']
 
 def limpa_terminal():
     os.system('cls')
@@ -25,7 +25,15 @@ def mensagem():
 
 def adiciona_contato(opcao):
     limpa_terminal()
-    nome_contato = input('Nome do contato: ').capitalize()
+    nome_contato = input('Nome do contato: ').capitalize().strip()
+    if len(nome_contato) < 0 or len(nome_contato) < 4:
+        print('CONTATO NÃO ADICIONADO A LISTA\n')
+        print('Deve conter no minimo 4 caracteres!')
+        input('ENTER para continuar: ')            
+        return adiciona_contato(opcao)
+    else:     
+        pass
+
     if nome_contato in lista_contatos:
         print(f'O contato {nome_contato} já existe na sua agenda\n')
         input('ENTER para voltar ao menu: ')        
@@ -40,10 +48,25 @@ def visualizar_lista():
     limpa_terminal()
     print('LISTA DE CONTATOS')
     '''A lista está sendo exibida de maneira incorreta'''
-    for num in range(0,len(lista_contatos)):
-        num = num + 1
-        for c in lista_contatos:
-            print(f'{num} - {c}')
+    for c in lista_contatos:
+        pass
+        for n in enumerate(lista_contatos):
+            pass
+        print(f'{n} - {c}')
+
+def editar_lista():
+    visualizar_lista()
+    print('''
+        5 - EDITAR
+        6 - EXCLUIR
+                    ''')
+    opcao_editar = int(input('Número da opção desejada: '))
+
+    if opcao_editar == 5:
+        pass
+    elif opcao_editar == 6:
+        excluir = int(input('Número do contato a excluir: '))
+
 
 def executa_opcoes():
     limpa_terminal()
@@ -53,6 +76,8 @@ def executa_opcoes():
         adiciona_contato(opcao)
     elif opcao == 2:
         visualizar_lista()
+    elif opcao == 3:
+        editar_lista()
 
     return opcao
 def main():
