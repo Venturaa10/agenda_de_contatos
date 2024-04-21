@@ -38,7 +38,11 @@ def adiciona_contato(opcao):
 def visualizar_lista():
     limpa_terminal()
     print('LISTA DE CONTATOS')
-    print(lista_contatos)
+
+    for c in lista_contatos:
+        for num in range(0,len(lista_contatos)):
+            num = num + 1
+            print(f'{num} - {c}')
 
 def executa_opcoes():
     limpa_terminal()
