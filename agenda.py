@@ -5,7 +5,11 @@ import os
 
 '''Dicionario contendo os contatos'''
 
-contatos = []
+lista_contatos = []
+
+def limpa_terminal():
+    os.system('cls')
+
 
 def mensagem():
     print('''
@@ -17,9 +21,31 @@ def mensagem():
 [ 3 ] - EDITAR CONTATOS
 [ 0 ] - DESLOGAR                                                        
 =================================================== ''')
+    print() #Pula linha
 
-def main():
+def adiciona_contato(opcao):
+    limpa_terminal()
+    nome_contato = input('Nome do contato: ').capitalize()
+    for nome in nome_contato:
+        lista_contatos.append(nome)
+    
+    print(f'O Contato {nome_contato} foi adicionado(a) a sua agenda.\n')
+    input('ENTER para voltar ao menu: ')
+
+    return executa_opcoes()
+
+def executa_opcoes():
+    limpa_terminal()
     mensagem()
+    opcao = int(input('Digite o número da opção que deseja: '))
+    if opcao == 1:
+        adiciona_contato(opcao)
+
+    return opcao
+def main():
+    limpa_terminal()
+    mensagem()
+    executa_opcoes()
 
 if __name__ == '__main__':
     main()
