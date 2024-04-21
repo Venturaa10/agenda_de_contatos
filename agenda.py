@@ -27,12 +27,18 @@ def adiciona_contato(opcao):
     limpa_terminal()
     nome_contato = input('Nome do contato: ').capitalize()
     for nome in nome_contato:
-        lista_contatos.append(nome)
+        pass
+    lista_contatos.append(nome_contato)
     
     print(f'O Contato {nome_contato} foi adicionado(a) a sua agenda.\n')
     input('ENTER para voltar ao menu: ')
 
     return executa_opcoes()
+
+def visualizar_lista():
+    limpa_terminal()
+    print('LISTA DE CONTATOS')
+    print(lista_contatos)
 
 def executa_opcoes():
     limpa_terminal()
@@ -40,6 +46,8 @@ def executa_opcoes():
     opcao = int(input('Digite o número da opção que deseja: '))
     if opcao == 1:
         adiciona_contato(opcao)
+    elif opcao == 2:
+        visualizar_lista()
 
     return opcao
 def main():
