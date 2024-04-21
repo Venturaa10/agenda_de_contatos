@@ -47,25 +47,31 @@ def adiciona_contato(opcao):
 def visualizar_lista():
     limpa_terminal()
     print('LISTA DE CONTATOS')
-    '''A lista está sendo exibida de maneira incorreta'''
-    for c in lista_contatos:
-        pass
-        for n in enumerate(lista_contatos):
-            pass
-        print(f'{n} - {c}')
+    '''Arrumei a exibição da lista de contatos, porém tenho que fazer um tratamento quando o usuario buscar o contato pelo número.'''
+    for indice, i in enumerate(lista_contatos):
+        print(f'{indice} - {i}')
 
 def editar_lista():
-    visualizar_lista()
+    
     print('''
         5 - EDITAR
         6 - EXCLUIR
                     ''')
-    opcao_editar = int(input('Número da opção desejada: '))
+    opcao_editar = int(input('Número da opção desejada: ')) 
 
     if opcao_editar == 5:
+        '''O -1 é para tratar o valor do usuario, já que para enumerar os contatos na lista acrescentei +1, aqui eu diminuo -1'''
+        editar = int(input('Número do contato a editar: '))
+        visualizar_lista()
         pass
     elif opcao_editar == 6:
+        visualizar_lista()
         excluir = int(input('Número do contato a excluir: '))
+        contato_excluido = lista_contatos.pop(excluir)
+        print(f'O contato {contato_excluido} foi excluído!')        
+        print(lista_contatos)
+
+
 
 
 def executa_opcoes():
