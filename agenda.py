@@ -67,6 +67,36 @@ def visualizar_lista(opcao):
     # continuar(opcao)
     # return escolhe_opcao()
 
+def editar_contato(opcao):
+    '''Função responsavél por editar o nome do contato'''
+    visualizar_lista(opcao)
+    print() #Pula linha
+    print('FAZER A LOGICA PARA EDITAR')
+    print('0 -> Para voltar ao menu!\n')
+    editar = int(input('\nNúmero do contato a editar: '))
+    if editar == 0:
+        return escolhe_opcao()
+
+def excluir_contato(opcao):
+    '''Função responsavél por excluir o contato'''
+    visualizar_lista(opcao)
+    print() #Pula linha
+    print('FAZER A LOGICA PARA EDITAR')
+    print('0 -> Para voltar ao menu!\n')
+
+    try:
+        excluir = int(input('Número do contato a excluir: '))
+    except:
+        input('\nOpção Invalída!')
+        return editar_lista(opcao)
+        
+    if excluir == 0: 
+        return escolhe_opcao()
+    contato_excluido = lista_contatos.pop(excluir)
+    print(f'O contato {contato_excluido} foi excluído!')        
+    print(lista_contatos)
+    continuar(opcao)
+
 def editar_lista(opcao):
     '''Função responsavél por fazer alterações na lista de contatos, como editar ou excluir contato'''
     limpa_terminal()
@@ -82,21 +112,12 @@ def editar_lista(opcao):
         return editar_lista(opcao)
     
     if opcao_editar == 5:
-        visualizar_lista(opcao)
-        print() #Pula linha
-        print('FAZER A LOGICA PARA EDITAR')
-        print('0 -> Para voltar ao menu!\n')
-        editar = int(input('\nNúmero do contato a editar: '))
-        if editar == 0:
-            return escolhe_opcao()
+        '''Função editar aqui'''
+        editar_contato(opcao)
      
     elif opcao_editar == 6:
-        visualizar_lista(opcao)
-        excluir = int(input('Número do contato a excluir: '))
-        contato_excluido = lista_contatos.pop(excluir)
-        print(f'O contato {contato_excluido} foi excluído!')        
-        print(lista_contatos)
-        continuar(opcao)
+        '''Função excluir aqui'''
+        excluir_contato(opcao)
         
     elif opcao_editar == 0:
         voltar()
@@ -104,7 +125,6 @@ def editar_lista(opcao):
     else:
         input('\nOpção Invalída!')
         return editar_lista(opcao)
-
 
 
 
