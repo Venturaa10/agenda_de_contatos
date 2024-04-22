@@ -16,6 +16,11 @@ def continuar(opcao):
     '''
     input('ENTER para continuar: ')
 
+def nome_invalido():
+    print('Nome inválido')
+    print('Deve conter no minímo 2 caracteres!')
+    pula_linha()
+
 def pula_linha():
     '''Apenas pula linha'''
     print()
@@ -51,14 +56,15 @@ def adiciona_contato(opcao):
     - Armezana o novo contato do usuario na lista caso seja valido
     '''
     print('0 -> Para voltar ao menu!\n')
+    apenas_exibi_a_lista()
+    pula_linha()
     nome_contato = input('Nome do contato: ').capitalize().strip()
 
     if nome_contato == '0':
         voltar()
 
     if len(nome_contato) < 0 or len(nome_contato) < 2:
-        print('CONTATO NÃO ADICIONADO A LISTA\n')
-        print('Deve conter no minimo 2 caracteres!')
+        nome_invalido()
         continuar(opcao)
         limpa_terminal()
         return adiciona_contato(opcao)
@@ -113,7 +119,7 @@ def editar_contato(opcao):
         return editar_contato(opcao)
     
     try:
-        novo_nome = input(f'Digite o novo nome do contato {lista_contatos[editar - 1]}: ').capitalize().strip()
+        novo_nome = input(f'Digite o novo nome do contato "{lista_contatos[editar - 1]}": ').capitalize().strip()
 
     except:
         pula_linha()
@@ -121,13 +127,12 @@ def editar_contato(opcao):
         return editar_contato(opcao) 
 
     if len(novo_nome) < 0 or len(novo_nome) < 2:
-        print('Nome invalído')
-        print('Deve conter no minimo 2 caracteres!')
+        nome_invalido()
         continuar(opcao)
         limpa_terminal()
         return editar_contato(opcao)
     else:
-        print(f'O contato "{lista_contatos[editar - 1]}" alterado para "{novo_nome}"')
+        print(f'O contato "{lista_contatos[editar - 1]}" foi alterado(a) para "{novo_nome}"')
         lista_contatos[editar - 1] = novo_nome
         
     pula_linha()
