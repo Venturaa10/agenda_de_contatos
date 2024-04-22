@@ -11,8 +11,16 @@ def limpa_terminal():
     os.system('cls')
 
 def continuar(opcao):    
-    input('ENTER para continuar: ')            
-    
+    input('ENTER para continuar: ')
+
+def pula_linha():
+    '''Apenas pula linha'''
+    print()
+
+def opcao_invalida():
+    input('\nOpção Invalída!')
+
+
 def voltar():
     '''Função responsavél por retornar ao menu'''
     return escolhe_opcao()    
@@ -28,15 +36,13 @@ def mensagem():
 [ 3 ] - EDITAR CONTATOS
 [ 0 ] - DESLOGAR                                                        
 =================================================== ''')
-    print() #Pula linha
+    pula_linha()
 
 def adiciona_contato(opcao):
     '''Função responsavél por adicionar um contato a agenda do usuario'''
     print('0 -> Para voltar ao menu!\n')
-
     nome_contato = input('Nome do contato: ').capitalize().strip()
 
-    
     if nome_contato == '0':
         voltar()
 
@@ -59,52 +65,65 @@ def adiciona_contato(opcao):
         continuar(opcao)  
         limpa_terminal()
         return escolhe_opcao()       
-
-def visualizar_lista(opcao):
-    '''Função resposanvél por exibir a lista de contato'''
+def apenas_exibi_a_lista():
+    '''Função resposanvél por apenas exibir a lista de contatos'''
     print('LISTA DE CONTATOS')
     '''Arrumei a exibição da lista de contatos, porém tenho que fazer um tratamento quando o usuario buscar o contato pelo número.'''
     for indice, i in enumerate(lista_contatos):
         print(f'{indice} - {i}')   
-    print() #Pula linha
+
+def visualizar_lista(opcao):
+    '''Função resposanvél por exibir a lista de contato e voltar ao menu'''
+    print('LISTA DE CONTATOS')
+    '''Arrumei a exibição da lista de contatos, porém tenho que fazer um tratamento quando o usuario buscar o contato pelo número.'''
+    for indice, i in enumerate(lista_contatos):
+        print(f'{indice} - {i}')   
+
+    pula_linha()
     continuar(opcao)
     return escolhe_opcao()
 
 def editar_contato(opcao):
     '''Função responsavél por editar o nome do contato'''
-    visualizar_lista(opcao)
-    print() #Pula linha
+    limpa_terminal()
     print('FAZER A LOGICA PARA EDITAR')
     print('0 -> Para voltar ao menu!\n')
+    apenas_exibi_a_lista()
+
     try:
         editar = int(input('\nNúmero do contato a editar: '))
     except:
-        input('\nOpção Invalída!')
+        opcao_invalida()
         return editar_contato(opcao)   
-    
-
+        
     if editar == 0:
         return escolhe_opcao()
 
 def excluir_contato(opcao):
     '''Função responsavél por excluir o contato'''
-    visualizar_lista(opcao)
-    print() #Pula linha
-    print('FAZER A LOGICA PARA EXCLUIR')
+    limpa_terminal()
     print('0 -> Para voltar ao menu!\n')
-
+    apenas_exibi_a_lista()
+    pula_linha()
     try:
         excluir = int(input('Número do contato a excluir: '))
     except:
-        input('\nOpção Invalída!')
+        opcao_invalida()
         return excluir_contato(opcao)
         
     if excluir == 0: 
         return escolhe_opcao()
-    contato_excluido = lista_contatos.pop(excluir)
+    try:
+        contato_excluido = lista_contatos.pop(excluir)
+    except:
+        pula_linha()
+        input(f'O contato número {excluir} não existe, tente novamente!')
+        return excluir_contato(opcao)
+    
     print(f'O contato {contato_excluido} foi excluído!')        
     print(lista_contatos)
     continuar(opcao)
+    return excluir_contato(opcao),contato_excluido
 
 def editar_lista(opcao):
     '''Função responsavél por fazer alterações na lista de contatos, como editar ou excluir contato'''
@@ -117,7 +136,7 @@ def editar_lista(opcao):
     try:
         opcao_editar = int(input('Número da opção desejada: ')) 
     except:
-        input('\nOpção Invalída!')
+        opcao_invalida()
         return editar_lista(opcao)
     
     if opcao_editar == 5:
@@ -132,9 +151,8 @@ def editar_lista(opcao):
         voltar()
 
     else:
-        input('\nOpção Invalída!')
+        opcao_invalida()
         return editar_lista(opcao)
-
 
 
 def escolhe_opcao():
@@ -145,7 +163,7 @@ def escolhe_opcao():
         opcao = int(input('Digite o número da opção que deseja: '))
 
     except:
-        input('\nOpção Invalída!')
+        opcao_invalida()
         return escolhe_opcao()
     
     if opcao == 1:
@@ -163,7 +181,7 @@ def escolhe_opcao():
         deslogar()
         
     else:
-        input('\nOpção Invalída!')
+        opcao_invalida()
         return escolhe_opcao()
         
     return opcao
