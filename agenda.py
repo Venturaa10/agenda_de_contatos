@@ -4,7 +4,7 @@
 import os
 
 '''Lista contendo os contatos'''
-lista_contatos = ['João','Vinicius','Michelle']
+lista_contatos = ['João','Vinicius','Michelle','Camilla','Guilherme']
 
 def limpa_terminal():
     '''Função responsavél por limpar o terminal'''
@@ -70,15 +70,11 @@ def apenas_exibi_a_lista():
     print('LISTA DE CONTATOS')
     '''Arrumei a exibição da lista de contatos, porém tenho que fazer um tratamento quando o usuario buscar o contato pelo número.'''
     for indice, i in enumerate(lista_contatos):
-        print(f'{indice} - {i}')   
+        print(f'{indice + 1} - {i}')   
 
 def visualizar_lista(opcao):
     '''Função resposanvél por exibir a lista de contato e voltar ao menu'''
-    print('LISTA DE CONTATOS')
-    '''Arrumei a exibição da lista de contatos, porém tenho que fazer um tratamento quando o usuario buscar o contato pelo número.'''
-    for indice, i in enumerate(lista_contatos):
-        print(f'{indice} - {i}')   
-
+    apenas_exibi_a_lista()
     pula_linha()
     continuar(opcao)
     return escolhe_opcao()
@@ -110,18 +106,24 @@ def excluir_contato(opcao):
     except:
         opcao_invalida()
         return excluir_contato(opcao)
-        
-    if excluir == 0: 
+    
+    if excluir == 0:
         return escolhe_opcao()
+    elif excluir < 0:
+        opcao_invalida()
+        return excluir_contato(opcao)
+
+
     try:
-        contato_excluido = lista_contatos.pop(excluir)
+        contato_excluido = lista_contatos.pop(excluir - 1)
     except:
         pula_linha()
         input(f'O contato número {excluir} não existe, tente novamente!')
         return excluir_contato(opcao)
     
     print(f'O contato {contato_excluido} foi excluído!')        
-    print(lista_contatos)
+    # print(lista_contatos)
+    pula_linha()
     continuar(opcao)
     return excluir_contato(opcao),contato_excluido
 
