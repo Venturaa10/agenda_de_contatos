@@ -3,14 +3,15 @@
 '''Importando a biblioteca os'''
 import os
 
-'''Dicionario contendo os contatos'''
-
+'''Lista contendo os contatos'''
 lista_contatos = ['João','Vinicius','Michelle']
 
 def limpa_terminal():
     os.system('cls')
 
-
+def continuar(opcao):
+    input('ENTER para continuar: ')            
+    
 def mensagem():
     print('''
 =============== AGENDA VIRTUAL ================
@@ -26,23 +27,23 @@ def mensagem():
 def adiciona_contato(opcao):
     limpa_terminal()
     nome_contato = input('Nome do contato: ').capitalize().strip()
+    
     if len(nome_contato) < 0 or len(nome_contato) < 4:
         print('CONTATO NÃO ADICIONADO A LISTA\n')
         print('Deve conter no minimo 4 caracteres!')
-        input('ENTER para continuar: ')            
-        return adiciona_contato(opcao)
-    else:     
-        pass
+        continuar(opcao)
+        return 
 
     if nome_contato in lista_contatos:
         print(f'O contato {nome_contato} já existe na sua agenda\n')
-        input('ENTER para voltar ao menu: ')        
+        continuar(opcao)
+        return adiciona_contato(opcao)
+
     else:
         lista_contatos.append(nome_contato)
         print(f'O Contato {nome_contato} foi adicionado(a) a sua agenda.\n')
-        input('ENTER para voltar ao menu: ')            
-
-    return executa_opcoes()
+        continuar(opcao)  
+        return executa_opcoes()       
 
 def visualizar_lista():
     limpa_terminal()
@@ -70,7 +71,7 @@ def editar_lista():
         contato_excluido = lista_contatos.pop(excluir)
         print(f'O contato {contato_excluido} foi excluído!')        
         print(lista_contatos)
-
+        continuar()
 
 
 
