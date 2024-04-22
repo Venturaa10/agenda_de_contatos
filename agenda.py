@@ -11,6 +11,9 @@ def limpa_terminal():
     os.system('cls')
 
 def continuar(opcao):    
+    '''
+    - Exibe um input para continuar o programa
+    '''
     input('ENTER para continuar: ')
 
 def pula_linha():
@@ -18,6 +21,9 @@ def pula_linha():
     print()
 
 def opcao_invalida():
+    '''
+    - Exibe um input com um tipo de mensagem de erro
+    '''
     input('\nOpção Invalída!')
 
 
@@ -39,7 +45,11 @@ def mensagem():
     pula_linha()
 
 def adiciona_contato(opcao):
-    '''Função responsavél por adicionar um contato a agenda do usuario'''
+    '''Função responsavél por adicionar um contato a agenda do usuario
+    - Recebe o novo contato do usuario
+    - Faz a validação da quantidade de caracteres e se o contato já existe
+    - Armezana o novo contato do usuario na lista caso seja valido
+    '''
     print('0 -> Para voltar ao menu!\n')
     nome_contato = input('Nome do contato: ').capitalize().strip()
 
@@ -65,10 +75,14 @@ def adiciona_contato(opcao):
         continuar(opcao)  
         limpa_terminal()
         return escolhe_opcao()       
+
 def apenas_exibi_a_lista():
-    '''Função resposanvél por apenas exibir a lista de contatos'''
+    '''Função resposanvél por apenas exibir a lista de contatos
+    - Cria/Exibe uma lista com os contatos cadastrados pelo usuario
+    - Tratei acrescentando +1 no indice, para exibir ao usuario os contatos numerados do 1 em diante, pois aparecer "0 - nome" não tem sentido
+    - Fiz tratamentos na função de excluir para que seja excluído o contato correto de acordo com o seu indice
+    '''
     print('LISTA DE CONTATOS')
-    '''Arrumei a exibição da lista de contatos, porém tenho que fazer um tratamento quando o usuario buscar o contato pelo número.'''
     for indice, i in enumerate(lista_contatos):
         print(f'{indice + 1} - {i}')   
 
@@ -96,7 +110,13 @@ def editar_contato(opcao):
         return escolhe_opcao()
 
 def excluir_contato(opcao):
-    '''Função responsavél por excluir o contato'''
+    '''Função responsavél por excluir o contato
+    - Tratamento de erro em caso de valores invalidos no input "excluir"
+    - Tratamento de erro na variavel "contato_excluido" em caso de indice/número do contato fornecido pelo usuario seja inexistente
+    - Tratei a variavel "contato_excluido", pois caso o usuario queira excluir o contato de número 1, o indice desse contato é 0, devido ao tratamento que fiz ao exibir a lista de contatos ao usuario acrescentando +1 ao exibir o indice. Logo contato número 1 = indice 0, assim em diante
+    - Mensagem exibindo o nome do contato excluído 
+    - Return do contato excluido para atualizar a lista
+    '''
     limpa_terminal()
     print('0 -> Para voltar ao menu!\n')
     apenas_exibi_a_lista()
@@ -112,7 +132,6 @@ def excluir_contato(opcao):
     elif excluir < 0:
         opcao_invalida()
         return excluir_contato(opcao)
-
 
     try:
         contato_excluido = lista_contatos.pop(excluir - 1)
@@ -158,12 +177,15 @@ def editar_lista(opcao):
 
 
 def escolhe_opcao():
-    '''Função responsavél pela execução da função que o usuario desejar fazer'''
+    '''Função responsavél pela execução da função que o usuario desejar fazer
+    - Tratamento de erro no input "opcao"
+    - Exibe o texto com as opções disponiveis e o número correspondente
+    - Condicionais para executar a função de acordo com o número recebido pelo usuario
+    '''
     limpa_terminal()
     mensagem()
     try:
         opcao = int(input('Digite o número da opção que deseja: '))
-
     except:
         opcao_invalida()
         return escolhe_opcao()
