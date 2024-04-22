@@ -7,15 +7,18 @@ import os
 lista_contatos = ['João','Vinicius','Michelle']
 
 def limpa_terminal():
+    '''Função responsavél por limpar o terminal'''
     os.system('cls')
 
-def continuar(opcao):
+def continuar(opcao):    
     input('ENTER para continuar: ')            
     
 def voltar():
+    '''Função responsavél por retornar ao menu'''
     return escolhe_opcao()    
 
 def mensagem():
+    '''Função responsavél por exibir a mensagem com as opções possiveis na agenda'''
     print('''
 =============== AGENDA VIRTUAL ================
             INFORME UMA DAS OPÇÕES ABAIXO:
@@ -28,6 +31,7 @@ def mensagem():
     print() #Pula linha
 
 def adiciona_contato(opcao):
+    '''Função responsavél por adicionar um contato a agenda do usuario'''
     limpa_terminal()
     print('0 -> Para voltar ao menu!\n')
     nome_contato = input('Nome do contato: ').capitalize().strip()
@@ -53,16 +57,18 @@ def adiciona_contato(opcao):
         return escolhe_opcao()       
 
 def visualizar_lista(opcao):
+    '''Função resposanvél por exibir a lista de contato'''
     limpa_terminal()
     print('LISTA DE CONTATOS')
     '''Arrumei a exibição da lista de contatos, porém tenho que fazer um tratamento quando o usuario buscar o contato pelo número.'''
     for indice, i in enumerate(lista_contatos):
         print(f'{indice} - {i}')
 
-    continuar(opcao)
-    return escolhe_opcao()
+    # continuar(opcao)
+    # return escolhe_opcao()
 
 def editar_lista(opcao):
+    '''Função responsavél por fazer alterações na lista de contatos, como editar ou excluir contato'''
     
     print('''
         5 - EDITAR
@@ -72,10 +78,15 @@ def editar_lista(opcao):
     opcao_editar = int(input('Número da opção desejada: ')) 
 
     if opcao_editar == 5:
-        '''O -1 é para tratar o valor do usuario, já que para enumerar os contatos na lista acrescentei +1, aqui eu diminuo -1'''
-        editar = int(input('Número do contato a editar: '))
         visualizar_lista(opcao)
-        pass
+        print() #Pula linha
+        print('FAZER A LOGICA PARA EDITAR')
+        print('0 -> Para voltar ao menu!\n')
+        editar = int(input('\nNúmero do contato a editar: '))
+        if editar == 0:
+            voltar()
+
+        return editar
     elif opcao_editar == 6:
         visualizar_lista(opcao)
         excluir = int(input('Número do contato a excluir: '))
@@ -89,6 +100,7 @@ def editar_lista(opcao):
 
 
 def escolhe_opcao():
+    '''Função responsavél pela execução da função que o usuario desejar fazer'''
     limpa_terminal()
     mensagem()
     opcao = int(input('Digite o número da opção que deseja: '))
@@ -100,8 +112,16 @@ def escolhe_opcao():
     elif opcao == 3:
         editar_lista(opcao)
 
+    elif opcao == 0:
+        deslogar()
 
     return opcao
+
+def deslogar():
+    '''Função responsavél por encerrar o programa'''
+    limpa_terminal()
+    print('DESLOGADO!')
+
 def main():
     limpa_terminal()
     mensagem()
