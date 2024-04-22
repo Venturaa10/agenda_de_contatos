@@ -16,7 +16,7 @@ def continuar(opcao):
     '''
     input('ENTER para continuar: ')
 
-def nome_invalido():
+def msg_nome_invalido():
     print('Nome inválido')
     print('Deve conter no minímo 2 caracteres!')
     pula_linha()
@@ -64,7 +64,7 @@ def adiciona_contato(opcao):
         voltar()
 
     if len(nome_contato) < 0 or len(nome_contato) < 2:
-        nome_invalido()
+        msg_nome_invalido()
         continuar(opcao)
         limpa_terminal()
         return adiciona_contato(opcao)
@@ -127,7 +127,7 @@ def editar_contato(opcao):
         return editar_contato(opcao) 
 
     if len(novo_nome) < 0 or len(novo_nome) < 2:
-        nome_invalido()
+        msg_nome_invalido()
         continuar(opcao)
         limpa_terminal()
         return editar_contato(opcao)
