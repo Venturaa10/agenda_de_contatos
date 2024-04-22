@@ -77,34 +77,35 @@ def editar_lista(opcao):
                     ''')
     try:
         opcao_editar = int(input('Número da opção desejada: ')) 
-
-        if opcao_editar == 5:
-            visualizar_lista(opcao)
-            print() #Pula linha
-            print('FAZER A LOGICA PARA EDITAR')
-            print('0 -> Para voltar ao menu!\n')
-            editar = int(input('\nNúmero do contato a editar: '))
-            if editar == 0:
-                voltar()
-
-            return editar
-        elif opcao_editar == 6:
-            visualizar_lista(opcao)
-            excluir = int(input('Número do contato a excluir: '))
-            contato_excluido = lista_contatos.pop(excluir)
-            print(f'O contato {contato_excluido} foi excluído!')        
-            print(lista_contatos)
-            continuar(opcao)
-        
-        elif opcao_editar == 0:
-            voltar()
-
-        else:
-            input('\nOpção Invalída!')
-            return escolhe_opcao()
-
     except:
-        return editar_lista()
+        input('\nOpção Invalída!')
+        return editar_lista(opcao)
+    
+    if opcao_editar == 5:
+        visualizar_lista(opcao)
+        print() #Pula linha
+        print('FAZER A LOGICA PARA EDITAR')
+        print('0 -> Para voltar ao menu!\n')
+        editar = int(input('\nNúmero do contato a editar: '))
+        if editar == 0:
+            return escolhe_opcao()
+     
+    elif opcao_editar == 6:
+        visualizar_lista(opcao)
+        excluir = int(input('Número do contato a excluir: '))
+        contato_excluido = lista_contatos.pop(excluir)
+        print(f'O contato {contato_excluido} foi excluído!')        
+        print(lista_contatos)
+        continuar(opcao)
+        
+    elif opcao_editar == 0:
+        voltar()
+
+    else:
+        input('\nOpção Invalída!')
+        return editar_lista(opcao)
+
+
 
 
 def escolhe_opcao():
