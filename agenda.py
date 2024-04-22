@@ -54,6 +54,8 @@ def adiciona_contato(opcao):
     - Recebe o novo contato do usuario
     - Faz a validação da quantidade de caracteres e se o contato já existe
     - Armezana o novo contato do usuario na lista caso seja valido
+    - Metodo capitalize -> Retorna a primeira letra da string maiuscula e o restante minusculo
+    - Metodo strip -> Remove os espaços vazios do input, evitando os "espaços" do teclado do usuario
     '''
     print('0 -> Para voltar ao menu!\n')
     apenas_exibi_a_lista()
@@ -100,7 +102,14 @@ def visualizar_lista(opcao):
     return escolhe_opcao()
 
 def editar_contato(opcao):
-    '''Função responsavél por editar o nome do contato'''
+    '''Função responsavél por editar o nome do contato
+    - A variavel "editar" recebe o número do contato que é exibido na lista a qual o usuario deseja editar
+    - Tratamentos de erros nas variaveis "editar" e "novo_nome" caso receba valores inválidos ou número de contato inexistente na lista
+    - Validação de caracteres do novo nome recebido pelo usuario
+    - O -1 é para tratar e o programa pegar o indice do usuario correto, o contato do indice 0 é exibido com o número 1 na lista de contato para o usuario, assim em diante.
+    - Metodo capitalize -> Retorna a primeira letra da string maiuscula e o restante minusculo
+    - Metodo strip -> Remove os espaços vazios do input, evitando os "espaços" do teclado do usuario
+    '''
     limpa_terminal()
     print('0 -> Para voltar ao menu!\n')
     apenas_exibi_a_lista()
