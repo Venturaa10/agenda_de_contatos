@@ -69,41 +69,55 @@ def visualizar_lista(opcao):
 
 def editar_lista(opcao):
     '''Função responsavél por fazer alterações na lista de contatos, como editar ou excluir contato'''
-    
+    limpa_terminal()
     print('''
         5 - EDITAR
         6 - EXCLUIR
         0 - VOLTAR AO MENU
                     ''')
-    opcao_editar = int(input('Número da opção desejada: ')) 
+    try:
+        opcao_editar = int(input('Número da opção desejada: ')) 
 
-    if opcao_editar == 5:
-        visualizar_lista(opcao)
-        print() #Pula linha
-        print('FAZER A LOGICA PARA EDITAR')
-        print('0 -> Para voltar ao menu!\n')
-        editar = int(input('\nNúmero do contato a editar: '))
-        if editar == 0:
+        if opcao_editar == 5:
+            visualizar_lista(opcao)
+            print() #Pula linha
+            print('FAZER A LOGICA PARA EDITAR')
+            print('0 -> Para voltar ao menu!\n')
+            editar = int(input('\nNúmero do contato a editar: '))
+            if editar == 0:
+                voltar()
+
+            return editar
+        elif opcao_editar == 6:
+            visualizar_lista(opcao)
+            excluir = int(input('Número do contato a excluir: '))
+            contato_excluido = lista_contatos.pop(excluir)
+            print(f'O contato {contato_excluido} foi excluído!')        
+            print(lista_contatos)
+            continuar(opcao)
+        
+        elif opcao_editar == 0:
             voltar()
 
-        return editar
-    elif opcao_editar == 6:
-        visualizar_lista(opcao)
-        excluir = int(input('Número do contato a excluir: '))
-        contato_excluido = lista_contatos.pop(excluir)
-        print(f'O contato {contato_excluido} foi excluído!')        
-        print(lista_contatos)
-        continuar(opcao)
-    
-    elif opcao_editar == 0:
-        voltar()
+        else:
+            input('\nOpção Invalída!')
+            return escolhe_opcao()
+
+    except:
+        return editar_lista()
 
 
 def escolhe_opcao():
     '''Função responsavél pela execução da função que o usuario desejar fazer'''
     limpa_terminal()
     mensagem()
-    opcao = int(input('Digite o número da opção que deseja: '))
+    try:
+        opcao = int(input('Digite o número da opção que deseja: '))
+
+    except:
+        input('\nOpção Invalída!')
+        return escolhe_opcao()
+    
     if opcao == 1:
         adiciona_contato(opcao)
     elif opcao == 2:
@@ -114,8 +128,13 @@ def escolhe_opcao():
 
     elif opcao == 0:
         deslogar()
-
+        
+    else:
+        input('\nOpção Invalída!')
+        return escolhe_opcao()
+        
     return opcao
+
 
 def deslogar():
     '''Função responsavél por encerrar o programa'''
