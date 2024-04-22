@@ -1,5 +1,5 @@
-# AGENDA DE CONTATOS
-# Desenvolva um programa que permita ao usuário adicionar, visualizar e editar contatos em uma agenda virtual.
+# AGENDA VIRTUAL DE CONTATOS
+# Desenvolvendo um programa que permite ao usuário adicionar, visualizar,excluir e editar contatos em uma agenda virtual.
 '''Importando a biblioteca os'''
 import os
 
