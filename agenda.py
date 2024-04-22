@@ -4,7 +4,7 @@
 import os
 
 '''Lista contendo os contatos'''
-lista_contatos = ['João','Vinicius','Michelle','Camilla','Guilherme']
+lista_contatos = ['João','Vinicius','Michelle']
 
 def limpa_terminal():
     '''Função responsavél por limpar o terminal'''
@@ -90,8 +90,12 @@ def apenas_exibi_a_lista():
     - Fiz tratamentos na função de excluir para que seja excluído o contato correto de acordo com o seu indice
     '''
     print('LISTA DE CONTATOS')
-    for indice, i in enumerate(lista_contatos):
-        print(f'{indice + 1} - {i}')   
+    if len(lista_contatos) == 0:
+        pula_linha()
+        return print('-----> LISTA DE CONTATOS VAZIA! <-----')
+    else:
+        for indice, i in enumerate(lista_contatos):
+            print(f'{indice + 1} - {i}')   
 
 def visualizar_lista(opcao):
     '''Função resposanvél por exibir a lista de contato e voltar ao menu'''
