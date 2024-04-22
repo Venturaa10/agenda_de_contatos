@@ -127,9 +127,11 @@ def editar_contato(opcao):
         limpa_terminal()
         return editar_contato(opcao)
     else:
-        lista_contatos[editar - 1] = novo_nome
         print(f'O contato "{lista_contatos[editar - 1]}" alterado para "{novo_nome}"')
-    
+        lista_contatos[editar - 1] = novo_nome
+        
+    pula_linha()
+    continuar(opcao)
     return editar_contato(opcao)
 
 def excluir_contato(opcao):
