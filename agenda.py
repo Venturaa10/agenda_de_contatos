@@ -31,22 +31,21 @@ def opcao_invalida():
     '''
     input('\nOpção Invalída!')
 
-
 def voltar():
     '''Função responsavél por retornar ao menu'''
     return escolhe_opcao()    
 
-def mensagem():
+def mensagem_menu():
     '''Função responsavél por exibir a mensagem com as opções possiveis na agenda'''
     print('''
-=============== AGENDA VIRTUAL ================
+        ================= AGENDA VIRTUAL ==================
             INFORME UMA DAS OPÇÕES ABAIXO:
 
-[ 1 ] - ADICIONAR AOS CONTATOS  
-[ 2 ] - VISUALIZAR LISTA DE COTATOS 
-[ 3 ] - EDITAR CONTATOS
-[ 0 ] - DESLOGAR                                                        
-=================================================== ''')
+                [ 1 ] - ADICIONAR AOS CONTATOS  
+                [ 2 ] - VISUALIZAR LISTA DE COTATOS 
+                [ 3 ] - EDITAR CONTATOS
+                [ 0 ] - DESLOGAR                                                        
+        ==================================================''')
     pula_linha()
 
 def adiciona_contato(opcao):
@@ -111,6 +110,8 @@ def editar_contato(opcao):
     - Metodo strip -> Remove os espaços vazios do input, evitando os "espaços" do teclado do usuario
     '''
     limpa_terminal()
+    print('TELA PARA EDITAR O CONTATO!')
+    pula_linha()
     print('0 -> Para voltar ao menu!\n')
     apenas_exibi_a_lista()
 
@@ -157,6 +158,8 @@ def excluir_contato(opcao):
     - Return do contato excluido para atualizar a lista
     '''
     limpa_terminal()
+    print('TELA PARA EXCLUIR O CONTATO!')
+    pula_linha()
     print('0 -> Para voltar ao menu!\n')
     apenas_exibi_a_lista()
     pula_linha()
@@ -179,7 +182,7 @@ def excluir_contato(opcao):
         input(f'O contato número {excluir} não existe, tente novamente!')
         return excluir_contato(opcao)
     
-    print(f'O contato {contato_excluido} foi excluído!')        
+    print(f'O contato "{contato_excluido}" foi excluído!')        
     # print(lista_contatos)
     pula_linha()
     continuar(opcao)
@@ -222,7 +225,7 @@ def escolhe_opcao():
     - Condicionais para executar a função de acordo com o número recebido pelo usuario
     '''
     limpa_terminal()
-    mensagem()
+    mensagem_menu()
     try:
         opcao = int(input('Digite o número da opção que deseja: '))
     except:
@@ -257,7 +260,7 @@ def deslogar():
 
 def main():
     limpa_terminal()
-    mensagem()
+    mensagem_menu()
     escolhe_opcao()
 
 if __name__ == '__main__':
