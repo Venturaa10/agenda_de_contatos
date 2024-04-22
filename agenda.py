@@ -96,7 +96,6 @@ def visualizar_lista(opcao):
 def editar_contato(opcao):
     '''Função responsavél por editar o nome do contato'''
     limpa_terminal()
-    print('FAZER A LOGICA PARA EDITAR')
     print('0 -> Para voltar ao menu!\n')
     apenas_exibi_a_lista()
 
@@ -108,6 +107,30 @@ def editar_contato(opcao):
         
     if editar == 0:
         return escolhe_opcao()
+
+    elif editar < 0:
+        opcao_invalida()
+        return editar_contato(opcao)
+    
+    try:
+        novo_nome = input(f'Digite o novo nome do contato {lista_contatos[editar - 1]}: ').capitalize().strip()
+
+    except:
+        pula_linha()
+        input(f'O contato número {editar} não existe, tente novamente!')
+        return editar_contato(opcao) 
+
+    if len(novo_nome) < 0 or len(novo_nome) < 2:
+        print('Nome invalído')
+        print('Deve conter no minimo 2 caracteres!')
+        continuar(opcao)
+        limpa_terminal()
+        return editar_contato(opcao)
+    else:
+        lista_contatos[editar - 1] = novo_nome
+        print(f'O contato "{lista_contatos[editar - 1]}" alterado para "{novo_nome}"')
+    
+    return editar_contato(opcao)
 
 def excluir_contato(opcao):
     '''Função responsavél por excluir o contato
