@@ -64,13 +64,13 @@ def adiciona_contato(opcao):
     if nome_contato == '0':
         voltar()
 
-    if len(nome_contato) < 0 or len(nome_contato) < 2:
+    elif len(nome_contato) < 0 or len(nome_contato) < 2:
         msg_nome_invalido()
         continuar(opcao)
         limpa_terminal()
         return adiciona_contato(opcao)
 
-    if nome_contato in lista_contatos:
+    elif nome_contato in lista_contatos:
         print(f'O contato {nome_contato} já existe na sua agenda\n')
         continuar(opcao)
         limpa_terminal()
@@ -81,7 +81,7 @@ def adiciona_contato(opcao):
         print(f'O Contato {nome_contato} foi adicionado(a) a sua agenda.\n')
         continuar(opcao)  
         limpa_terminal()
-        return escolhe_opcao()       
+        return adiciona_contato(opcao)       
 
 def apenas_exibi_a_lista():
     '''Função resposanvél por apenas exibir a lista de contatos
