@@ -4,7 +4,7 @@
 import os
 
 '''Lista contendo os contatos'''
-lista_contatos = ['João','Vinicius','Michelle']
+lista_contatos = []
 
 def limpa_terminal():
     '''Função responsavél por limpar o terminal'''
