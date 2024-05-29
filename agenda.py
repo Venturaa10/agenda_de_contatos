@@ -1,4 +1,4 @@
-# AGENDA VIRTUAL DE CONTATOS
+# Agenda de contatos virtual
 # Desenvolvendo um programa que permite ao usuário adicionar, visualizar,excluir e editar contatos em uma agenda virtual.
 '''Importando a biblioteca os'''
 import os
